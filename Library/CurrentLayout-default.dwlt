@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 950, y: 888}
+  m_MinSize: {x: 950, y: 866}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -45,7 +45,7 @@ MonoBehaviour:
     y: 0
     width: 2560
     height: 1335
-  m_MinSize: {x: 950, y: 300}
+  m_MinSize: {x: 950, y: 866}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &3
 MonoBehaviour:
@@ -112,10 +112,10 @@ MonoBehaviour:
     y: 30
     width: 2560
     height: 1285
-  m_MinSize: {x: 948, y: 838}
-  m_MaxSize: {x: 22008, y: 22088}
+  m_MinSize: {x: 948, y: 816}
+  m_MaxSize: {x: 22008, y: 22066}
   vertical: 0
-  controlID: 5963
+  controlID: 259
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -137,10 +137,10 @@ MonoBehaviour:
     y: 0
     width: 1833
     height: 1285
-  m_MinSize: {x: 332, y: 838}
-  m_MaxSize: {x: 14002, y: 22088}
+  m_MinSize: {x: 332, y: 816}
+  m_MaxSize: {x: 14002, y: 22066}
   vertical: 1
-  controlID: 5655
+  controlID: 209
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_MinSize: {x: 306, y: 444}
   m_MaxSize: {x: 8006, y: 8044}
   vertical: 0
-  controlID: 5514
+  controlID: 78
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -217,7 +217,7 @@ MonoBehaviour:
   m_MinSize: {x: 204, y: 444}
   m_MaxSize: {x: 4004, y: 8044}
   vertical: 1
-  controlID: 5515
+  controlID: 79
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -292,10 +292,10 @@ MonoBehaviour:
     y: 755
     width: 1833
     height: 530
-  m_MinSize: {x: 332, y: 394}
-  m_MaxSize: {x: 14002, y: 14044}
+  m_MinSize: {x: 332, y: 372}
+  m_MaxSize: {x: 14002, y: 14022}
   vertical: 0
-  controlID: 5656
+  controlID: 210
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -317,10 +317,10 @@ MonoBehaviour:
     y: 0
     width: 680
     height: 530
-  m_MinSize: {x: 232, y: 394}
-  m_MaxSize: {x: 10002, y: 14044}
+  m_MinSize: {x: 232, y: 372}
+  m_MaxSize: {x: 10002, y: 14022}
   vertical: 1
-  controlID: 5992
+  controlID: 173
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -366,8 +366,8 @@ MonoBehaviour:
     y: 329
     width: 680
     height: 201
-  m_MinSize: {x: 102, y: 122}
-  m_MaxSize: {x: 4002, y: 4022}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 30}
   m_Panes:
   - {fileID: 30}
@@ -421,10 +421,10 @@ MonoBehaviour:
     y: 0
     width: 397
     height: 1285
-  m_MinSize: {x: 339, y: 644}
-  m_MaxSize: {x: 4004, y: 12044}
+  m_MinSize: {x: 339, y: 622}
+  m_MaxSize: {x: 4004, y: 12022}
   vertical: 1
-  controlID: 5964
+  controlID: 260
 --- !u!114 &18
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -496,8 +496,8 @@ MonoBehaviour:
     y: 857
     width: 397
     height: 428
-  m_MinSize: {x: 279, y: 222}
-  m_MaxSize: {x: 4004, y: 4022}
+  m_MinSize: {x: 275, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 33}
   m_Panes:
   - {fileID: 33}
@@ -526,7 +526,7 @@ MonoBehaviour:
   m_MinSize: {x: 277, y: 72}
   m_MaxSize: {x: 4002, y: 4022}
   vertical: 0
-  controlID: 5583
+  controlID: 273
 --- !u!114 &22
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -568,7 +568,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
-    m_Text: Flow Graph
+    m_Text: Graph
     m_Image: {fileID: 0}
     m_Tooltip: 
   m_Pos:
@@ -579,8 +579,7 @@ MonoBehaviour:
     height: 511
   m_ViewDataDictionary: {fileID: 0}
   _data:
-    _json: '{"locked":false,"isActive":true,"referenceData":{"rootObjectInstanceID":-17444,"parentElementGuids":[]},"sidebars":{"left":{"size":335.0,"scroll":{"x":0.0,"y":0.0}},"right":{"size":300.0,"scroll":{"x":0.0,"y":0.0}},"panels":[{"height":200.0,"anchor":"Left","order":0,"controlHint":{"$content":"Ludiq.GraphInspectorPanel","$type":"System.RuntimeType"},"scroll":{"x":0.0,"y":0.0}},{"height":200.0,"anchor":"Left","order":0,"controlHint":{"$content":"Bolt.VariablesPanel","$type":"System.RuntimeType"},"scroll":{"x":0.0,"y":0.0}}]},"reliablePosition":{"xMin":680.0,"yMin":828.0,"xMax":1831.0,"yMax":1339.0},"m_MinSize":{"x":100.0,"y":100.0},"m_MaxSize":{"x":4000.0,"y":4000.0},"m_TitleContent":{"m_Text":"Flow
-      Graph","m_Image":null,"m_Tooltip":""},"m_Pos":{"xMin":680.0,"yMin":828.0,"xMax":1831.0,"yMax":1339.0},"m_ViewDataDictionary":null}'
+    _json: '{"locked":false,"isActive":true,"referenceData":{"rootObjectInstanceID":-17444,"parentElementGuids":[]},"sidebars":{"left":{"size":335.0,"scroll":{"x":0.0,"y":0.0}},"right":{"size":300.0,"scroll":{"x":0.0,"y":0.0}},"panels":[{"height":200.0,"anchor":"Left","order":0,"controlHint":{"$content":"Ludiq.GraphInspectorPanel","$type":"System.RuntimeType"},"scroll":{"x":0.0,"y":0.0}},{"height":200.0,"anchor":"Left","order":0,"controlHint":{"$content":"Bolt.VariablesPanel","$type":"System.RuntimeType"},"scroll":{"x":0.0,"y":0.0}}]},"reliablePosition":{"xMin":680.0,"yMin":828.0,"xMax":1831.0,"yMax":1339.0},"m_MinSize":{"x":100.0,"y":100.0},"m_MaxSize":{"x":4000.0,"y":4000.0},"m_TitleContent":{"m_Text":"Graph","m_Image":null,"m_Tooltip":""},"m_Pos":{"xMin":680.0,"yMin":828.0,"xMax":1831.0,"yMax":1339.0},"m_ViewDataDictionary":null}'
     _objectReferences: []
 --- !u!114 &24
 MonoBehaviour:
@@ -931,9 +930,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: ee300000
-    m_LastClickedID: 12526
-    m_ExpandedIDs: 00000000e42d000060330000
+    m_SelectedIDs: 52340000
+    m_LastClickedID: 13394
+    m_ExpandedIDs: 000000007a310000a8360000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -961,7 +960,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000e42d000060330000
+    m_ExpandedIDs: 000000007a310000a8360000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -988,7 +987,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000da2f0000f62f000000000000063000005e3200005a32000078330000ea320000ce2f00003a370000122e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1072,9 +1071,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: dcbbffff
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 6afaffff
+      m_ExpandedIDs: 8af7ffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
