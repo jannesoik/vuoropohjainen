@@ -1,0 +1,7 @@
+C:\Users\Janne\Google Drive\koulu\amk\koodipaja\harjoitustyö\vuoropohjainen2\vuoropohjainen2\vuoropohjainen2\obj\Debug\vuoropohjainen2.csprojAssemblyReference.cache
+C:\Users\Janne\Google Drive\koulu\amk\koodipaja\harjoitustyö\vuoropohjainen2\vuoropohjainen2\vuoropohjainen2\obj\Debug\vuoropohjainen2.csproj.CoreCompileInputs.cache
+C:\Users\Janne\Google Drive\koulu\amk\koodipaja\harjoitustyö\vuoropohjainen2\vuoropohjainen2\vuoropohjainen2\bin\Debug\vuoropohjainen2.exe.config
+C:\Users\Janne\Google Drive\koulu\amk\koodipaja\harjoitustyö\vuoropohjainen2\vuoropohjainen2\vuoropohjainen2\bin\Debug\vuoropohjainen2.exe
+C:\Users\Janne\Google Drive\koulu\amk\koodipaja\harjoitustyö\vuoropohjainen2\vuoropohjainen2\vuoropohjainen2\bin\Debug\vuoropohjainen2.pdb
+C:\Users\Janne\Google Drive\koulu\amk\koodipaja\harjoitustyö\vuoropohjainen2\vuoropohjainen2\vuoropohjainen2\obj\Debug\vuoropohjainen2.exe
+C:\Users\Janne\Google Drive\koulu\amk\koodipaja\harjoitustyö\vuoropohjainen2\vuoropohjainen2\vuoropohjainen2\obj\Debug\vuoropohjainen2.pdb
