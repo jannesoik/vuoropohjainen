@@ -85,15 +85,15 @@ namespace vuoropohjainen2
             {
                 int torjuttuVahinko = (Str * vahinkoKerroin) - 1;
                 vahinko = 1;
-                Console.Write("{0} hyökkäsi, {1} otti vain ", Nimi, puolustaja.Nimi);
+                Console.Write("{0} hyökkäsi, {1} menetti ", Nimi, puolustaja.Nimi);
                 UI.VahinkoVäri(vahinko);
-                Console.Write(":n vanhinkopisteen (" + torjuttuVahinko + " vastustettu)\n");
+                Console.Write(":n kestopisteen (" + torjuttuVahinko + " vastustettu)\n");
             }
             else
             {
-                Console.Write("{0} hyökkäsi, {1} otti ", Nimi, puolustaja.Nimi);
+                Console.Write("{0} hyökkäsi, {1} menetti ", Nimi, puolustaja.Nimi);
                 UI.VahinkoVäri(vahinko);
-                Console.Write(" pistettä vahinkoa (" + puolustaja.Def + " vastustettu)\n");
+                Console.Write(" kestopistettä (" + puolustaja.Def + " vastustettu)\n");
             }
 
             return vahinko;

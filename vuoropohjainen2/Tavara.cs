@@ -15,25 +15,54 @@ namespace vuoropohjainen2
             Nimi = nimi;
         }
 
-        public static void HeitäPommi(Hahmo heittäjä, Hahmo vihollinen)
+        public static void HeitäPommi(Hahmo heittäjä, Hahmo vihollinen, List<Hahmo> toissijaisetViholliset)
         {
-
             Random arvonta = new Random();
+
             int vahinkoKerroin = arvonta.Next(2, 4);
+            int toissijainenKerroin = arvonta.Next(3, 7);
+
             int vahinko = (4 * vahinkoKerroin) - vihollinen.Def;
+
             if (vahinko < 1)
             {
                 int torjuttuVahinko = (4 * vahinkoKerroin) - 1;
                 vahinko = 1;
-                Console.Write("{0} heitti pommin, {1} otti vain ", heittäjä.Nimi, vihollinen.Nimi);
+                Console.Write("{0} heitti pommin, {1} menetti ", heittäjä.Nimi, vihollinen.Nimi);
                 UI.VahinkoVäri(vahinko);
-                Console.Write(":n vanhinkopisteen (" + torjuttuVahinko + " vastustettu)\n");
+                Console.Write(":n kestopisteen (" + torjuttuVahinko + " vastustettu)\n");
+
+                
             }
             else
             {
-                Console.Write("{0} heitti pommin, {1} otti ", heittäjä.Nimi, vihollinen.Nimi);
+                Console.Write("{0} heitti pommin, {1} menetti ", heittäjä.Nimi, vihollinen.Nimi);
                 UI.VahinkoVäri(vahinko);
-                Console.Write(" pistettä vahinkoa (" + vihollinen.Def + " vastustettu)\n");
+                Console.Write(" kestopistettä (" + vihollinen.Def + " vastustettu)\n");                
+            }
+
+            //toissijainen vahinko
+            for (int i = 0; i < toissijaisetViholliset.Count; i++)
+            {
+                int toissijainenVahinko = toissijainenKerroin - toissijaisetViholliset[i].Def;
+
+                if (toissijainenVahinko<1)
+                {
+                    int torjuttuVahinko = toissijainenKerroin - 1;
+                    toissijainenVahinko = 1;
+                    toissijaisetViholliset[i].Hp -= toissijainenVahinko;
+                    Console.Write("\n{0} menetti myös ", toissijaisetViholliset[i].Nimi);
+                    UI.VahinkoVäri(toissijainenVahinko);
+                    Console.Write(" kestopistettä (" + torjuttuVahinko + " vastustettu)\n");
+                }
+                else
+                {
+                    toissijaisetViholliset[i].Hp -= toissijainenVahinko;
+                    Console.Write("\n{0} menetti myös ", toissijaisetViholliset[i].Nimi);
+                    UI.VahinkoVäri(toissijainenVahinko);
+                    Console.Write(" kestopistettä (" + toissijaisetViholliset[i].Def + " vastustettu)\n");
+                }
+                
             }
 
             vihollinen.MenetäHPtä(vahinko);

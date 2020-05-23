@@ -88,8 +88,8 @@ namespace vuoropohjainen2
                 if (Pelaaja.Tavaralista.Count() > 0)
                 {
                     Tavara valittuTavara = UI.ValitseTavara();
-                    vihollinen = UI.ValitseVihollinen();
-                    Tavara.HeitäPommi(pelaaja, vihollinen);
+                    vihollinen = UI.ValitseVihollinen();                    
+                    Tavara.HeitäPommi(pelaaja, vihollinen, UI.ValitseToissijaisetViholliset(vihollinen));
                     Pelaaja.Tavaralista.Remove(valittuTavara);
                 }
                 else

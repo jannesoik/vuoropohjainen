@@ -163,5 +163,25 @@ namespace vuoropohjainen2
                 Ohje();
             }
         }
+
+        public static List<Hahmo> ValitseToissijaisetViholliset(Hahmo ensisijainenVihollinen)
+        {
+            List<Hahmo> excludeLista = new List<Hahmo>();            
+            Hahmo pelaaja = Areena.Areenalista.Find(item => item.Nimi == "Pelaaja");
+
+            excludeLista.Add(ensisijainenVihollinen);
+            excludeLista.Add(pelaaja);
+
+            var tulos = Areena.Areenalista.Except(excludeLista);
+
+            foreach (var item in tulos)
+            {
+                Console.WriteLine(item.Nimi);
+                Console.ReadKey(true);
+            }
+            List<Hahmo> toissijaisetViholliset = tulos.ToList();
+
+            return toissijaisetViholliset;
+        }
     }
 }
