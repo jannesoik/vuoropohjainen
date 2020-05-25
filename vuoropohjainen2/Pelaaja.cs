@@ -17,13 +17,31 @@ namespace vuoropohjainen2
 
         static public void SaaTavara(string tavara)
         {
-            Console.Clear();
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("Löysit {0}n.", tavara);
-            if (tavara == "Pommi")
-                Tavaralista.Add(new Tavara("Pommi"));
-            //Console.ReadKey(true);
+
+            Hahmo pelaaja = Areena.Areenalista.Find(item => item.Nimi == "Pelaaja");
+
+            Random arvonta = new Random();
+            int arpaNro = arvonta.Next(1, 11);
+            if (pelaaja.Dex >= arpaNro)
+            {
+                Console.Clear();
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("Löysit {0}n.", tavara);
+                if (tavara == "Pommi")
+                    Tavaralista.Add(new Tavara("Pommi"));
+                else if (tavara == "Juoma")
+                    Tavaralista.Add(new Tavara("Juoma"));
+                Console.ReadKey(true);
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Et löytänyt mitään ({0} vs. {1})", pelaaja.Dex, arpaNro);
+                Console.ReadKey(true);
+            }
+            
+            
         }
 
         static public void SaaKokemusta(int exp)
@@ -45,10 +63,30 @@ namespace vuoropohjainen2
                 pelaaja.MaxHp += 5;
                 Taidonnosto();
             }
-            else if (Exp >= 10 && Taso < 3)
+            else if (Exp >= 12 && Taso < 3)
             {
                 Console.Clear();
                 Console.Write("Nousit tasolle 3.");
+                Taso++;
+                Console.ReadKey(true);
+                Console.ResetColor();
+                pelaaja.MaxHp += 5;
+                Taidonnosto();
+            }
+            else if (Exp >= 23 && Taso < 4)
+            {
+                Console.Clear();
+                Console.Write("Nousit tasolle 4.");
+                Taso++;
+                Console.ReadKey(true);
+                Console.ResetColor();
+                pelaaja.MaxHp += 5;
+                Taidonnosto();
+            }
+            else if (Exp >= 35 && Taso < 5)
+            {
+                Console.Clear();
+                Console.Write("Nousit tasolle 5.");
                 Taso++;
                 Console.ReadKey(true);
                 Console.ResetColor();

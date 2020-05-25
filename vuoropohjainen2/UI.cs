@@ -87,6 +87,8 @@ namespace vuoropohjainen2
                     break;
                 if (vihollislista.Count() > 2 && nappiInfo.Key == ConsoleKey.D3)
                     break;
+                if (vihollislista.Count() > 3 && nappiInfo.Key == ConsoleKey.D4)
+                    break;
 
             } while (nappiInfo.Key != ConsoleKey.D1);
             Console.Clear();
@@ -94,6 +96,8 @@ namespace vuoropohjainen2
                 return vihollislista[2];
             if (nappiInfo.Key == ConsoleKey.D2)
                 return vihollislista[1];
+            if (nappiInfo.Key == ConsoleKey.D4)
+                return vihollislista[3];
             else
                 return vihollislista[0];
         }
@@ -133,11 +137,14 @@ namespace vuoropohjainen2
         {
             Console.WriteLine("\nTAIDOT");
             Console.WriteLine("STR - Hyökkäysvahinko");
-            Console.WriteLine("DEX - Vuorojärjestys, väistömahdollisuus");
+            Console.WriteLine("DEX - Vuorojärjestys, väistömahdollisuus, tavaroiden löytömahdollisuus");
             Console.WriteLine("DEF - Vahingonvastustus, kestopisteet");
             Console.WriteLine("\nKOMENNOT");
             Console.WriteLine("Hyökkää - STR-riippuvainen hyökkäys.");
-            Console.WriteLine("Puolusta - Nostaa hahmon vahingonvastustusta, tehokkuus riippuu DEF-taidosta. Nostaa väistömahdollisuutta.");
+            Console.WriteLine("Puolusta - DEF&DEX-riippuvainen puolustus, mahdollisuus extravuoroon. ");
+            Console.WriteLine("Tavara - Käytä löytämääsi tavaraa.");
+            Console.WriteLine("\nTAVARAT");
+            Console.WriteLine("Pommi - Heitä pommi, osuu kaikkiin vihollisiin.");
             Console.ReadKey(true);
             Päävalikko();
         }

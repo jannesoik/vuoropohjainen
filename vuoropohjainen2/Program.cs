@@ -10,40 +10,41 @@ namespace vuoropohjainen2
     {
         static void Main(string[] args)
         {
-            UI.Päävalikko();           
-
-            Areena.LuoUusiPelaaja();
+            UI.Päävalikko();
 
             //Lisätään pelaaja areenalistaan
+            Areena.LuoUusiPelaaja();
+
             Hahmo pelaaja = Areena.Areenalista.Find(item => item.Nimi == "Pelaaja");
            
-            Pelaaja.Hahmonluonti(5);
+            Pelaaja.Hahmonluonti(7);
 
-            //Luodaan 1-2 luurankoa
-            Areena.LuoLuuranko(Areena.VihollisMääränArvonta(1, 2));
+            Pelaaja.SaaTavara("Juoma");
 
-            Pelaaja.SaaTavara("Pommi");
+            int taisteluita = 3;
+            int luurankoMin = 1, luurankoMax = 2;
+            for (int i = 0; i < taisteluita; i++)
+            {
+                Areena.LuoLuuranko(Areena.VihollisMääränArvonta(luurankoMin, luurankoMax));
+                if (pelaaja.Kuollut==false)
+                {
+                    AloitaTaistelu();
+                }
+                luurankoMin++;
+                luurankoMax++;
 
-            //Aloitetaan 1. taistelu
-            AloitaTaistelu();            
-
-            //Luodaan 3-4 luurankoa
-            Areena.LuoLuuranko(Areena.VihollisMääränArvonta(3, 4));
-
-            //2. taistelu
-            if (pelaaja.Kuollut==false)
-                AloitaTaistelu();
-
-            //Luodaan 4-6 luurankoa
-            Areena.LuoLuuranko(Areena.VihollisMääränArvonta(4, 6));
-
-            //3. taistelu
-            if (pelaaja.Kuollut == false)            
-                AloitaTaistelu();            
+                if (pelaaja.Kuollut)
+                    break;
+            }
 
             if (pelaaja.Kuollut == false)
             {
                 Console.WriteLine("VOITIT");
+                Console.ReadKey(true);
+            }
+            else
+            {
+                Console.WriteLine("Hävisit.");
                 Console.ReadKey(true);
             }
         }
@@ -57,11 +58,11 @@ namespace vuoropohjainen2
 
             for (int j = 0; pelaaja.Hp > 0; j++) //taistelu jatkuu, kunnes pelaajan hp loppuu
             {
-                if (Areena.LuurankoLista.Count < 1) //Voitto
+                if (Areena.LuurankoLista.Count < 1) //Taistelun voitto
                 {
                     Console.Clear();
                     Pelaaja.voitetutTaistelut++;
-                    Console.WriteLine("Taisteluja voitettu {0}/5", Pelaaja.voitetutTaistelut);
+                    Console.WriteLine("Taisteluja voitettu {0}/3", Pelaaja.voitetutTaistelut);
                     Console.ReadKey(true);
                     Console.ResetColor();
                     break;
@@ -101,8 +102,6 @@ namespace vuoropohjainen2
                     Console.ReadKey();
                     if (Areena.LuurankoLista.Count > 0)//luurankoja vielä elossa                    
                         Vuoro.LuurankojenVuoro(Areena.LuurankoLista, pelaaja);
-
-                    Console.WriteLine("\n***\n");
                 }
             }
         }

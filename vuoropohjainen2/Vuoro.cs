@@ -47,21 +47,38 @@ namespace vuoropohjainen2
             }
         }
 
+
         public static void PelaajanVuoro(Hahmo pelaaja, Hahmo vihollinen)
         {
-            if (pelaaja.Puolustautunut)
+            Console.WriteLine("extravuoro "+pelaaja.ExtraVuoro);
+            Console.ReadKey(true);
+
+            
+            if(pelaaja.Puolustautunut && pelaaja.ExtraVuoro==false)
                 pelaaja.LaskePuolustus();
 
             ConsoleKeyInfo nappiInfo;
             do
             {
                 Console.Clear();
-                Console.WriteLine("\nPelaajan vuoro\nValitse komento: \n1) Hyökkää \n2) Puolusta \n3) Tavara");
-                nappiInfo = Console.ReadKey(true);
-                if (nappiInfo.Key == ConsoleKey.D2)
-                    break;
-                if (nappiInfo.Key == ConsoleKey.D3)
-                    break;
+                if (pelaaja.ExtraVuoro == false)
+                {
+                    Console.WriteLine("\nPelaajan vuoro\nValitse komento: \n1) Hyökkää \n2) Tavara \n3) Puolusta");
+                    nappiInfo = Console.ReadKey(true);
+                    if (nappiInfo.Key == ConsoleKey.D2)
+                        break;
+                    if (nappiInfo.Key == ConsoleKey.D3)
+                        break;
+                }
+                else
+                {
+                    Console.WriteLine("\nEXTRAVUORO\nValitse komento: \n1) Hyökkää \n2) Tavara");
+                    nappiInfo = Console.ReadKey(true);
+                    pelaaja.ExtraVuoro = false;
+                    if (nappiInfo.Key == ConsoleKey.D2)
+                        break;
+                }
+
             } while (nappiInfo.Key != ConsoleKey.D1);
 
             //Hyökkäys
@@ -77,20 +94,29 @@ namespace vuoropohjainen2
                     Console.WriteLine("{0} hyökkäsi, {1} väisti.", pelaaja.Nimi, vihollinen.Nimi);
             }
             //Puolustus
-            if (nappiInfo.Key == ConsoleKey.D2 || nappiInfo.Key == ConsoleKey.NumPad2)
+            if (nappiInfo.Key == ConsoleKey.D3 || nappiInfo.Key == ConsoleKey.NumPad3)
             {
                 pelaaja.Puolusta();
                 Console.WriteLine("Pelaaja puolustautuu");
+                Console.ReadKey(true);
             }
             //Tavara
-            if (nappiInfo.Key == ConsoleKey.D3 || nappiInfo.Key == ConsoleKey.NumPad3)
+            if (nappiInfo.Key == ConsoleKey.D2 || nappiInfo.Key == ConsoleKey.NumPad2)
             {
                 if (Pelaaja.Tavaralista.Count() > 0)
                 {
                     Tavara valittuTavara = UI.ValitseTavara();
-                    vihollinen = UI.ValitseVihollinen();                    
-                    Tavara.HeitäPommi(pelaaja, vihollinen, UI.ValitseToissijaisetViholliset(vihollinen));
-                    Pelaaja.Tavaralista.Remove(valittuTavara);
+                    if (valittuTavara.Nimi == "Juoma")
+                    {
+                        Tavara.JuoJuoma(pelaaja);
+                    }
+                    else if (valittuTavara.Nimi == "Pommi")
+                    {
+                        vihollinen = UI.ValitseVihollinen();
+                        Tavara.HeitäPommi(pelaaja, vihollinen, UI.ValitseToissijaisetViholliset(vihollinen));
+                        Pelaaja.Tavaralista.Remove(valittuTavara);
+                    }
+                    
                 }
                 else
                 {
@@ -100,6 +126,10 @@ namespace vuoropohjainen2
                     PelaajanVuoro(pelaaja, vihollinen);
                 }
             }
+
+            if (pelaaja.ExtraVuoro == true) //uusi vuoro            
+                PelaajanVuoro(pelaaja, vihollinen);            
+
         }
 
     }

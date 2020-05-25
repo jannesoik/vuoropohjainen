@@ -20,12 +20,12 @@ namespace vuoropohjainen2
                 int taso = arvonta.Next(1, 10);
                 if (taso > 5)
                 {
-                    LuurankoLista.Add(new Hahmo("Vahva Luuranko " + i + 1, 15, 3, 6, 2, 15));
+                    LuurankoLista.Add(new Hahmo("Vahva Luuranko " + i + 1, 15, 4, 3, 3, 15));
                     Areenalista.Add(LuurankoLista[i]);
                 }
                 else
                 {
-                    LuurankoLista.Add(new Hahmo("Heikko Luuranko " + i + 1, 10, 2, 4, 2, 10));
+                    LuurankoLista.Add(new Hahmo("Heikko Luuranko " + i + 1, 10, 2, 6, 2, 10));
                     Areenalista.Add(LuurankoLista[i]);
                 }
                 await Task.Delay(100); //odotetaan jotta saadaan uusi randomnro

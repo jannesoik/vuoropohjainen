@@ -16,6 +16,8 @@ namespace vuoropohjainen2
         public int Def;
         public bool Kuollut;
         public bool Puolustautunut;
+        public bool ExtraVuoro;
+        public bool ExtraVuoroKäytetty;
         int puolustusDef;
 
         public Hahmo(string nimi, int hp, int str, int dex, int def, int maxHp)
@@ -55,6 +57,8 @@ namespace vuoropohjainen2
                     Random arvonta = new Random();
                     if (arvonta.Next(1, 101) > 25)
                         Pelaaja.SaaTavara("Pommi");
+                    else if (arvonta.Next(1, 101) > 10)
+                        Pelaaja.SaaTavara("Juoma");
                 }
                 else if (Nimi.Contains("Heikko Luuranko"))
                 {
@@ -62,6 +66,8 @@ namespace vuoropohjainen2
                     Random arvonta = new Random();
                     if (arvonta.Next(1, 101) > 25)
                         Pelaaja.SaaTavara("Pommi");
+                    else if (arvonta.Next(1, 101) > 10)
+                        Pelaaja.SaaTavara("Juoma");
                 }
 
                 Areena.PoistaKuolleet();
@@ -114,6 +120,9 @@ namespace vuoropohjainen2
         public void Puolusta()
         {
             Random arvonta = new Random();
+
+            ExtraVuoronArvonta();
+
             int arpaNro = arvonta.Next(1, 3);
             puolustusDef = arpaNro + Def;
             Def = Def + puolustusDef;
@@ -127,6 +136,18 @@ namespace vuoropohjainen2
             Puolustautunut = false;
         }    
 
+        public void ExtraVuoronArvonta()
+        {
+            Random arvonta = new Random();
 
+            int extraArpa = arvonta.Next(1, 101);
+            if (extraArpa < Def * (Dex*2))
+            {
+                Console.Clear();
+                Console.WriteLine("Sait extravuoron! ({0} vs {1})", Def * Dex, extraArpa);
+                Console.ReadKey(true);
+                ExtraVuoro = true;
+            }
+        }
     }
 }
