@@ -10,38 +10,65 @@ namespace vuoropohjainen2
     {
         static void Main(string[] args)
         {
-            UI.Päävalikko();
-
-            //Luodaan vihollisia
-            Random arvonta = new Random();
-            int luurankolukumäärä = arvonta.Next(1, 4);
-            Areena.LuoLuuranko(luurankolukumäärä);
+            UI.Päävalikko();           
 
             Areena.LuoUusiPelaaja();
 
-            //Pelaaja ja viholliset lisätään areenalistaan
-
+            //Lisätään pelaaja areenalistaan
             Hahmo pelaaja = Areena.Areenalista.Find(item => item.Nimi == "Pelaaja");
            
             Pelaaja.Hahmonluonti(5);
 
+            //Luodaan 1-2 luurankoa
+            Areena.LuoLuuranko(Areena.VihollisMääränArvonta(1, 2));
+
             Pelaaja.SaaTavara("Pommi");
 
-            AloitaTaistelu(pelaaja);
+            //Aloitetaan 1. taistelu
+            AloitaTaistelu();            
+
+            //Luodaan 3-4 luurankoa
+            Areena.LuoLuuranko(Areena.VihollisMääränArvonta(3, 4));
+
+            //2. taistelu
+            if (pelaaja.Kuollut==false)
+                AloitaTaistelu();
+
+            //Luodaan 4-6 luurankoa
+            Areena.LuoLuuranko(Areena.VihollisMääränArvonta(4, 6));
+
+            //3. taistelu
+            if (pelaaja.Kuollut == false)            
+                AloitaTaistelu();            
+
+            if (pelaaja.Kuollut == false)
+            {
+                Console.WriteLine("VOITIT");
+                Console.ReadKey(true);
+            }
         }
 
-        static public void AloitaTaistelu(Hahmo pelaaja)
+        static public void AloitaTaistelu()
         {
+            Console.Clear();
+            Console.WriteLine("Taistelu {0}", Pelaaja.voitetutTaistelut+1);
+            Console.ReadKey(true);
+            Hahmo pelaaja = Areena.Areenalista.Find(item => item.Nimi == "Pelaaja");
+
             for (int j = 0; pelaaja.Hp > 0; j++) //taistelu jatkuu, kunnes pelaajan hp loppuu
             {
-                if (Areena.LuurankoLista.Count < 1)
+                if (Areena.LuurankoLista.Count < 1) //Voitto
                 {
-                    Console.WriteLine("VOITIT");
+                    Console.Clear();
+                    Pelaaja.voitetutTaistelut++;
+                    Console.WriteLine("Taisteluja voitettu {0}/5", Pelaaja.voitetutTaistelut);
+                    Console.ReadKey(true);
+                    Console.ResetColor();
                     break;
                 }
-                Console.Clear();
+                Console.Clear(); Console.ResetColor();
                 Console.Write("KIERROS {0}\n\nAreenalla:", (j + 1));
-                for (int k = 0; k < Areena.Areenalista.Count(); k++)
+                for (int k = 0; k < Areena.Areenalista.Count(); k++) //Käydään areenalista läpi
                 {
                     if (Areena.Areenalista[k] != null)
                     {

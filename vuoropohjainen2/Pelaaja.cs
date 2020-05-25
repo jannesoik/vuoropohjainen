@@ -10,6 +10,7 @@ namespace vuoropohjainen2
     {
         static public int Exp;
         static public int Taso = 1;
+        static public int voitetutTaistelut;
         public static List<Tavara> Tavaralista = new List<Tavara>();
 
         public Pelaaja(string nimi, int hp, int str, int dex, int def, int maxHp) : base(nimi, hp, str, dex, def, maxHp) {}
@@ -22,7 +23,7 @@ namespace vuoropohjainen2
             Console.WriteLine("Löysit {0}n.", tavara);
             if (tavara == "Pommi")
                 Tavaralista.Add(new Tavara("Pommi"));
-            Console.ReadKey(true);
+            //Console.ReadKey(true);
         }
 
         static public void SaaKokemusta(int exp)
@@ -65,6 +66,8 @@ namespace vuoropohjainen2
             ConsoleKeyInfo nappiInfo;
             do
             {
+                Console.Clear();
+
                 Console.WriteLine("\nValitse nostettava taito: \n1) STR {0} \n2) DEX {1} \n3) DEF {2}", pelaaja.Str, pelaaja.Dex, pelaaja.Def);
                 nappiInfo = Console.ReadKey(true);
                 if (nappiInfo.Key == ConsoleKey.D2)

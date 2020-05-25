@@ -173,12 +173,7 @@ namespace vuoropohjainen2
             excludeLista.Add(pelaaja);
 
             var tulos = Areena.Areenalista.Except(excludeLista);
-
-            foreach (var item in tulos)
-            {
-                Console.WriteLine(item.Nimi);
-                Console.ReadKey(true);
-            }
+           
             List<Hahmo> toissijaisetViholliset = tulos.ToList();
 
             return toissijaisetViholliset;

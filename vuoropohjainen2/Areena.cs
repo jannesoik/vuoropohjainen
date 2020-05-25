@@ -52,5 +52,13 @@ namespace vuoropohjainen2
                     Areenalista.Remove(Areenalista[i]);
             }
         }
+
+        public static int VihollisMääränArvonta(int minMäärä, int maxMäärä)
+        {
+            Random arvonta = new Random();
+            int vihollisMäärä = arvonta.Next(minMäärä, minMäärä + 1);
+            return vihollisMäärä;
+
+        }
     }
 }
