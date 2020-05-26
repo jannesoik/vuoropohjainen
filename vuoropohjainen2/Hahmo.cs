@@ -16,6 +16,7 @@ namespace vuoropohjainen2
         public int Def;
         public bool Kuollut;
         public bool Puolustautunut;
+        public string Tagi;
         public bool ExtraVuoro;
         int puolustusDef;
 
@@ -49,6 +50,7 @@ namespace vuoropohjainen2
                 Console.WriteLine("\n" + Nimi + " kuoli.");
                 Console.ResetColor();
                 Kuollut = true;
+                System.Threading.Thread.Sleep(500);
 
                 if (Nimi.Contains("Vahva Luuranko"))
                 {
@@ -108,13 +110,13 @@ namespace vuoropohjainen2
             {
                 int torjuttuVahinko = (Str * vahinkoKerroin) - 1;
                 vahinko = 1;
-                Console.Write("{0} hyökkäsi, {1} menetti ", Nimi, puolustaja.Nimi);
+                Console.Write("{0} hyökkäsi, {1}{2} menetti ", Nimi, puolustaja.Nimi, puolustaja.Tagi);
                 UI.VahinkoVäri(vahinko);
                 Console.Write(":n kestopisteen (" + torjuttuVahinko + " vastustettu)\n");
             }
             else
             {
-                Console.Write("{0} hyökkäsi, {1} menetti ", Nimi, puolustaja.Nimi);
+                Console.Write("{0} hyökkäsi, {1}{2} menetti ", Nimi, puolustaja.Nimi, puolustaja.Tagi);
                 UI.VahinkoVäri(vahinko);
                 Console.Write(" kestopistettä (" + puolustaja.Def + " vastustettu)\n");
             }
@@ -124,7 +126,11 @@ namespace vuoropohjainen2
                 if (hyökkääjä.Hp<hyökkääjä.MaxHp)
                 {
                     hyökkääjä.Hp += vahinko;
-                    Console.WriteLine("{0} parantui {1} kestopistettä.", hyökkääjä.Nimi, vahinko);
+                    Console.Write("\n{0} sai takaisin ", hyökkääjä.Nimi);
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.Write(vahinko);
+                    Console.ResetColor();
+                    Console.Write(" kestopistettä.");
                     if (hyökkääjä.Hp > hyökkääjä.MaxHp)
                         hyökkääjä.Hp = hyökkääjä.MaxHp;
                 }
@@ -158,6 +164,7 @@ namespace vuoropohjainen2
             Def = Def + puolustusDef;
             Dex = Dex + 1;
             Puolustautunut = true;
+            Tagi = "[puolustautunut]";
         }
         public void LaskePuolustus()
         {
@@ -166,7 +173,8 @@ namespace vuoropohjainen2
             Def = Def - puolustusDef;
             Dex = Dex - 1;
            Puolustautunut = false;
-        }    
+            Tagi = "";
+        }
 
         public void ExtraVuoronArvonta()
         {
@@ -177,7 +185,7 @@ namespace vuoropohjainen2
             {
                 Console.Clear();
                 Console.WriteLine("Sait extravuoron! ({0} vs {1})", Def * Dex, extraArpa);
-                Console.ReadKey(true);
+                System.Threading.Thread.Sleep(700);
                 ExtraVuoro = true;
             }
         }

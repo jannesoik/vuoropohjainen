@@ -79,6 +79,7 @@ namespace vuoropohjainen2
             Console.Write(parannusMäärä); 
             Console.ResetColor();
             Console.Write(" kestopistettä");
+            System.Threading.Thread.Sleep(950);
         }
 
     }

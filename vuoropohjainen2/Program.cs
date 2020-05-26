@@ -45,11 +45,13 @@ namespace vuoropohjainen2
             if (pelaaja.Kuollut == false)
             {
                 Console.WriteLine("VOITIT");
+                Console.WriteLine("\n\n...");
                 Console.ReadKey(true);
             }
             else
             {
                 Console.WriteLine("Hävisit.");
+                Console.WriteLine("\n\n...");
                 Console.ReadKey(true);
             }
         }
@@ -59,7 +61,7 @@ namespace vuoropohjainen2
             #region Taistelun alku
             Console.Clear();
             Console.WriteLine("Taistelu {0}", Pelaaja.voitetutTaistelut + 1);
-            Console.ReadKey(true);
+            System.Threading.Thread.Sleep(1100);
 
             Hahmo pelaaja = Areena.Areenalista.Find(item => item.Nimi == "Pelaaja"); 
             #endregion
@@ -74,7 +76,7 @@ namespace vuoropohjainen2
                     Console.Clear();
                     Pelaaja.voitetutTaistelut++;
                     Console.WriteLine("Taisteluja voitettu {0}/3", Pelaaja.voitetutTaistelut);
-                    Console.ReadKey(true);
+                    System.Threading.Thread.Sleep(950);
                     Console.ResetColor();
                     break;
                 }
@@ -98,9 +100,9 @@ namespace vuoropohjainen2
                             Console.Write(" [puolustautuu]");
                     }
                 }
+                Console.WriteLine("\n\n...");
                 Console.ReadKey(true);
                 #endregion
-
                 
                 
                 for (int i = 0; i < Areena.Areenalista.Count(); i++)
@@ -110,44 +112,12 @@ namespace vuoropohjainen2
                     if (vuorossa == pelaaja)
                     {
                         Vuoro.PelaajanVuoro(pelaaja);
-                        Console.ReadKey();
+                        
                     }
                     else
                     {
                         Vuoro.VihollisenVuoro(vuorossa);
-                    }
-                    #region Vanha systeemi
-                    //if (vuorossa.Nimi.Contains("Luuranko")) //Luurangot aloittavat
-                    //{
-                    //    if (Areena.LuurankoLista.Count > 0)
-                    //        Vuoro.LuurankojenVuoro(Areena.LuurankoLista, pelaaja);
-                    //    if (pelaaja.Kuollut == false)
-                    //    {
-                    //        Vuoro.PelaajanVuoro(pelaaja);
-                    //        Console.ReadKey(true);
-                    //    }
-                    //}
-                    //else if (vuorossa.Nimi.Contains("Vampyyri"))
-                    //{
-                    //    if (Areena.Vampyyrilista.Count > 0)
-                    //        Vuoro.VampyyrienVuoro(Areena.Vampyyrilista, pelaaja);
-                    //    if (pelaaja.Kuollut == false)
-                    //    {
-                    //        Vuoro.PelaajanVuoro(pelaaja);
-                    //        Console.ReadKey(true);
-                    //    }
-                    //}
-                    //else if (vuorossa.Nimi.Contains("Pelaaja")) // pelaaja aloittaa
-                    //{
-                    //    Vuoro.PelaajanVuoro(pelaaja);
-                    //    Console.ReadKey();
-                    //    if (Areena.LuurankoLista.Count > 0 && Areena.Vampyyrilista.Count > 0)//vihollisisa vielä elossa                    
-                    //    {
-                    //        Vuoro.LuurankojenVuoro(Areena.LuurankoLista, pelaaja);
-                    //        Vuoro.LuurankojenVuoro(Areena.Vampyyrilista, pelaaja);
-                    //    }
-                    //} 
-                    #endregion
+                    }                    
                 }              
             }
         }

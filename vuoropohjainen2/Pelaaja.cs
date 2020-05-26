@@ -38,8 +38,8 @@ namespace vuoropohjainen2
                 Console.Clear();
                 Console.WriteLine("Et löytänyt mitään ({0} vs. {1})", pelaaja.Dex, arpaNro);
             }
-            
-                Console.ReadKey(true);
+
+            System.Threading.Thread.Sleep(600);
 
         }
 
@@ -51,13 +51,14 @@ namespace vuoropohjainen2
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Sait {0} kokemuspistettä.", exp);
             Exp = Exp + exp;
+            Console.WriteLine("\n\n...");
             Console.ReadKey(true);
             if (Exp >= 5 && Taso < 2)
             {
                 Console.Clear();
                 Console.Write("Nousit tasolle 2.");
                 Taso++;
-                Console.ReadKey(true);
+                System.Threading.Thread.Sleep(900);
                 Console.ResetColor();
                 pelaaja.MaxHp += 5;
                 Taidonnosto();
@@ -67,7 +68,7 @@ namespace vuoropohjainen2
                 Console.Clear();
                 Console.Write("Nousit tasolle 3.");
                 Taso++;
-                Console.ReadKey(true);
+                System.Threading.Thread.Sleep(900);
                 Console.ResetColor();
                 pelaaja.MaxHp += 5;
                 Taidonnosto();
@@ -77,7 +78,7 @@ namespace vuoropohjainen2
                 Console.Clear();
                 Console.Write("Nousit tasolle 4.");
                 Taso++;
-                Console.ReadKey(true);
+                System.Threading.Thread.Sleep(900);
                 Console.ResetColor();
                 pelaaja.MaxHp += 5;
                 Taidonnosto();
@@ -87,7 +88,7 @@ namespace vuoropohjainen2
                 Console.Clear();
                 Console.Write("Nousit tasolle 5.");
                 Taso++;
-                Console.ReadKey(true);
+                System.Threading.Thread.Sleep(900);
                 Console.ResetColor();
                 pelaaja.MaxHp += 5;
                 Taidonnosto();
@@ -150,19 +151,25 @@ namespace vuoropohjainen2
                 Console.WriteLine("   DEF {0}", pelaaja.Def);
                 Console.ResetColor();
             }
-            Console.ReadKey(true);
+            System.Threading.Thread.Sleep(400);
         }
 
-        static public void Hahmonluonti(int taitopisteet)
+        static public async void Hahmonluonti(int taitopisteet)
         {
             do
             {
                 Console.Clear();
                 if (taitopisteet == 1)
+                {
                     Console.WriteLine("Sinulla on {0} taitopiste.", taitopisteet);
+                    System.Threading.Thread.Sleep(600);
+                }
                 else
+                {
                     Console.WriteLine("Sinulla on {0} taitopistettä.", taitopisteet);
-                Console.ReadKey(true);
+                    System.Threading.Thread.Sleep(600);
+                }
+
                 Taidonnosto();
                 taitopisteet--;
             } while (taitopisteet > 0);

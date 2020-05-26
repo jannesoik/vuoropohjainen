@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace vuoropohjainen2
 {
@@ -146,6 +147,7 @@ namespace vuoropohjainen2
             Console.WriteLine("\nTAVARAT");
             Console.WriteLine("Pommi - Heitä pommi, osuu kaikkiin vihollisiin.");
             Console.WriteLine("Juoma - Palautta DEF:stä riippuvaisen määrän kestopisteitä.");
+            Console.WriteLine("\n\n...");
             Console.ReadKey(true);
             Päävalikko();
         }
@@ -185,6 +187,6 @@ namespace vuoropohjainen2
             List<Hahmo> toissijaisetViholliset = tulos.ToList();
 
             return toissijaisetViholliset;
-        }
+        }        
     }
 }
