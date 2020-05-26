@@ -17,7 +17,6 @@ namespace vuoropohjainen2
         public bool Kuollut;
         public bool Puolustautunut;
         public bool ExtraVuoro;
-        public bool ExtraVuoroKäytetty;
         int puolustusDef;
 
         public Hahmo(string nimi, int hp, int str, int dex, int def, int maxHp)
@@ -53,11 +52,11 @@ namespace vuoropohjainen2
 
                 if (Nimi.Contains("Vahva Luuranko"))
                 {
-                    Pelaaja.SaaKokemusta(8);
+                    Pelaaja.SaaKokemusta(10);
                     Random arvonta = new Random();
-                    if (arvonta.Next(1, 101) > 25)
+                    if (arvonta.Next(1, 101) > 5)
                         Pelaaja.SaaTavara("Pommi");
-                    else if (arvonta.Next(1, 101) > 10)
+                    else if (arvonta.Next(1, 101) > 15)
                         Pelaaja.SaaTavara("Juoma");
                 }
                 else if (Nimi.Contains("Heikko Luuranko"))
@@ -66,7 +65,25 @@ namespace vuoropohjainen2
                     Random arvonta = new Random();
                     if (arvonta.Next(1, 101) > 25)
                         Pelaaja.SaaTavara("Pommi");
+                    else if (arvonta.Next(1, 101) > 50)
+                        Pelaaja.SaaTavara("Juoma");
+                }
+                else if (Nimi.Contains("Heikko Vampyyri"))
+                {
+                    Pelaaja.SaaKokemusta(10);
+                    Random arvonta = new Random();
+                    if (arvonta.Next(1, 101) > 50)
+                        Pelaaja.SaaTavara("Pommi");
                     else if (arvonta.Next(1, 101) > 10)
+                        Pelaaja.SaaTavara("Juoma");
+                }
+                else if (Nimi.Contains("Vahva Vampyyri"))
+                {
+                    Pelaaja.SaaKokemusta(20);
+                    Random arvonta = new Random();
+                    if (arvonta.Next(1, 101) > 30)
+                        Pelaaja.SaaTavara("Pommi");
+                    else if (arvonta.Next(1, 101) > 5)
                         Pelaaja.SaaTavara("Juoma");
                 }
 
@@ -82,7 +99,7 @@ namespace vuoropohjainen2
             Hp += hplisäys;
         }
 
-        public int Hyökkää(Hahmo puolustaja)
+        public int Hyökkää(Hahmo puolustaja, Hahmo hyökkääjä)
         {
             Random arvonta = new Random();
             int vahinkoKerroin = arvonta.Next(1, 3);
@@ -100,6 +117,18 @@ namespace vuoropohjainen2
                 Console.Write("{0} hyökkäsi, {1} menetti ", Nimi, puolustaja.Nimi);
                 UI.VahinkoVäri(vahinko);
                 Console.Write(" kestopistettä (" + puolustaja.Def + " vastustettu)\n");
+            }
+
+            if (hyökkääjä.Nimi.Contains("Vampyyri"))
+            {
+                if (hyökkääjä.Hp<hyökkääjä.MaxHp)
+                {
+                    hyökkääjä.Hp += vahinko;
+                    Console.WriteLine("{0} parantui {1} kestopistettä.", hyökkääjä.Nimi, vahinko);
+                    if (hyökkääjä.Hp > hyökkääjä.MaxHp)
+                        hyökkääjä.Hp = hyökkääjä.MaxHp;
+                }
+                
             }
 
             return vahinko;
@@ -120,6 +149,7 @@ namespace vuoropohjainen2
         public void Puolusta()
         {
             Random arvonta = new Random();
+            Hahmo pelaaja = Areena.Areenalista.Find(item => item.Nimi == "Pelaaja");
 
             ExtraVuoronArvonta();
 
@@ -131,9 +161,11 @@ namespace vuoropohjainen2
         }
         public void LaskePuolustus()
         {
+            Hahmo pelaaja = Areena.Areenalista.Find(item => item.Nimi == "Pelaaja");
+
             Def = Def - puolustusDef;
             Dex = Dex - 1;
-            Puolustautunut = false;
+           Puolustautunut = false;
         }    
 
         public void ExtraVuoronArvonta()

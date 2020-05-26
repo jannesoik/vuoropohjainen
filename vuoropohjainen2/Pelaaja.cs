@@ -32,16 +32,15 @@ namespace vuoropohjainen2
                     Tavaralista.Add(new Tavara("Pommi"));
                 else if (tavara == "Juoma")
                     Tavaralista.Add(new Tavara("Juoma"));
-                Console.ReadKey(true);
             }
             else
             {
                 Console.Clear();
                 Console.WriteLine("Et löytänyt mitään ({0} vs. {1})", pelaaja.Dex, arpaNro);
-                Console.ReadKey(true);
             }
             
-            
+                Console.ReadKey(true);
+
         }
 
         static public void SaaKokemusta(int exp)
@@ -63,7 +62,7 @@ namespace vuoropohjainen2
                 pelaaja.MaxHp += 5;
                 Taidonnosto();
             }
-            else if (Exp >= 12 && Taso < 3)
+            else if (Exp >= 15 && Taso < 3)
             {
                 Console.Clear();
                 Console.Write("Nousit tasolle 3.");
@@ -73,7 +72,7 @@ namespace vuoropohjainen2
                 pelaaja.MaxHp += 5;
                 Taidonnosto();
             }
-            else if (Exp >= 23 && Taso < 4)
+            else if (Exp >= 30 && Taso < 4)
             {
                 Console.Clear();
                 Console.Write("Nousit tasolle 4.");
@@ -83,7 +82,7 @@ namespace vuoropohjainen2
                 pelaaja.MaxHp += 5;
                 Taidonnosto();
             }
-            else if (Exp >= 35 && Taso < 5)
+            else if (Exp >= 50 && Taso < 5)
             {
                 Console.Clear();
                 Console.Write("Nousit tasolle 5.");

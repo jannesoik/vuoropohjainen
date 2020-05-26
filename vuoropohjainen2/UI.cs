@@ -145,6 +145,7 @@ namespace vuoropohjainen2
             Console.WriteLine("Tavara - Käytä löytämääsi tavaraa.");
             Console.WriteLine("\nTAVARAT");
             Console.WriteLine("Pommi - Heitä pommi, osuu kaikkiin vihollisiin.");
+            Console.WriteLine("Juoma - Palautta DEF:stä riippuvaisen määrän kestopisteitä.");
             Console.ReadKey(true);
             Päävalikko();
         }

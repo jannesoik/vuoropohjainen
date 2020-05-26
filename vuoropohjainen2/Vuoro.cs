@@ -8,7 +8,7 @@ namespace vuoropohjainen2
 {
     class Vuoro
     {
-        static public Hahmo SuurinDex(List<Hahmo> areenalista)
+        static public List<Hahmo> SuurinDex(List<Hahmo> areenalista)
         {
             //järjestä lista dex:n mukaan
             int pelaajanDex = areenalista[0].Dex;
@@ -18,42 +18,36 @@ namespace vuoropohjainen2
                 if (järjestettyLista[i] != null)
                     Console.WriteLine((i + 1) + ". vuorossa " + järjestettyLista[i].Nimi + ", Dex: " + järjestettyLista[i].Dex);
             }
-            return järjestettyLista[0];
+            return järjestettyLista;
         }
 
-        public static void LuurankojenVuoro(List<Hahmo> luurankolista, Hahmo pelaaja)
+        public static void VihollisenVuoro(Hahmo vihollinen)
         {
-            Console.Clear();
-            if (luurankolista.Count() > 1)
-                Console.WriteLine("\nLuurankojen vuoro");
-            else
-                Console.WriteLine("\nLuurangon vuoro");
+            Hahmo pelaaja = Areena.Areenalista.Find(item => item.Nimi == "Pelaaja");
 
-            for (int i = 0; i < luurankolista.Count(); i++) //käydään luurankolista läpi
+            Console.Clear();
+
+            if (Areena.Areenalista.Contains(vihollinen))
             {
-                if (pelaaja.Kuollut)
-                    break;
+                Console.WriteLine("Vuorossa {0}", vihollinen.Nimi);
 
                 if (pelaaja.Väistä() == false)
                 {
-                    pelaaja.MenetäHPtä(luurankolista[i].Hyökkää(pelaaja));
+                    pelaaja.MenetäHPtä(vihollinen.Hyökkää(pelaaja, vihollinen));
                     Console.ReadKey(true);
                 }
                 else
                 {
-                    Console.WriteLine("{0} hyökkäsi, pelaaja väisti.", luurankolista[i].Nimi);
+                    Console.WriteLine("{0} hyökkäsi, pelaaja väisti.", vihollinen.Nimi);
                     Console.ReadKey(true);
                 }
-            }
+            }            
         }
 
-
-        public static void PelaajanVuoro(Hahmo pelaaja, Hahmo vihollinen)
+        public static void PelaajanVuoro(Hahmo pelaaja)
         {
-            Console.WriteLine("extravuoro "+pelaaja.ExtraVuoro);
-            Console.ReadKey(true);
+            Hahmo vihollinen;
 
-            
             if(pelaaja.Puolustautunut && pelaaja.ExtraVuoro==false)
                 pelaaja.LaskePuolustus();
 
@@ -88,7 +82,7 @@ namespace vuoropohjainen2
 
                 if (vihollinen.Väistä() == false)
                 {
-                    vihollinen.MenetäHPtä(pelaaja.Hyökkää(vihollinen));
+                    vihollinen.MenetäHPtä(pelaaja.Hyökkää(vihollinen, pelaaja));
                 }
                 else
                     Console.WriteLine("{0} hyökkäsi, {1} väisti.", pelaaja.Nimi, vihollinen.Nimi);
@@ -98,7 +92,6 @@ namespace vuoropohjainen2
             {
                 pelaaja.Puolusta();
                 Console.WriteLine("Pelaaja puolustautuu");
-                Console.ReadKey(true);
             }
             //Tavara
             if (nappiInfo.Key == ConsoleKey.D2 || nappiInfo.Key == ConsoleKey.NumPad2)
@@ -109,6 +102,7 @@ namespace vuoropohjainen2
                     if (valittuTavara.Nimi == "Juoma")
                     {
                         Tavara.JuoJuoma(pelaaja);
+                        Pelaaja.Tavaralista.Remove(valittuTavara);
                     }
                     else if (valittuTavara.Nimi == "Pommi")
                     {
@@ -123,14 +117,97 @@ namespace vuoropohjainen2
                     Console.Clear();
                     Console.WriteLine("Ei tavaroita.");
                     Console.ReadKey(true);
-                    PelaajanVuoro(pelaaja, vihollinen);
+                    PelaajanVuoro(pelaaja);
                 }
             }
 
             if (pelaaja.ExtraVuoro == true) //uusi vuoro            
-                PelaajanVuoro(pelaaja, vihollinen);            
+                PelaajanVuoro(pelaaja);            
 
         }
 
+        public static bool TaistelunVoittoehdotTäytetty()
+        {
+            //Käydään areenalista läpi ja tallennetaan viholliset omaan listaansa
+            List<Hahmo> vihollislista = new List<Hahmo>();
+            for (int i = 0; i < Areena.Areenalista.Count(); i++)
+            {
+                if (Areena.Areenalista[i].Nimi != "Pelaaja")
+                    vihollislista.Add(Areena.Areenalista[i]);
+            }
+
+            if (vihollislista.Count==0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+            //for (int i = 0; i < vihollislista.Count; i++)
+            //{
+            //    //Jos vihollislistaln alkiosta ei löydy Luurankoa eikä vampyyria 
+            //    //
+            //    if (vihollislista[i].Nimi.Contains("Luuranko")== false && vihollislista[i].Nimi.Contains("Vampyyri")==false)
+            ////}
+            //bool ehdot = false;
+
+
+            //return false;
+        }
+
+        #region Vanha vihollisvuorosysteemi
+        //public static void VampyyrienVuoro(List<Hahmo> vampyyrilista, Hahmo pelaaja)
+        //{
+        //    Console.Clear();
+        //    if (vampyyrilista.Count() > 1)
+        //        Console.WriteLine("\nVampyyrien vuoro");
+        //    else
+        //        Console.WriteLine("\nVampyyrin vuoro");
+
+        //    for (int i = 0; i < vampyyrilista.Count(); i++)
+        //    {
+        //        if (pelaaja.Kuollut)
+        //            break;
+
+        //        if (pelaaja.Väistä() == false)
+        //        {
+        //            pelaaja.MenetäHPtä(vampyyrilista[i].Hyökkää(pelaaja));
+        //            Console.ReadKey(true);
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine("{0} hyökkäsi, pelaaja väisti.", vampyyrilista[i].Nimi);
+        //            Console.ReadKey(true);
+        //        }
+        //    }
+        //}
+        //public static void LuurankojenVuoro(List<Hahmo> luurankolista, Hahmo pelaaja)
+        //{
+        //    Console.Clear();
+        //    if (luurankolista.Count() > 1)
+        //        Console.WriteLine("\nLuurankojen vuoro");
+        //    else
+        //        Console.WriteLine("\nLuurangon vuoro");
+
+        //    for (int i = 0; i < luurankolista.Count(); i++) //käydään luurankolista läpi
+        //    {
+        //        if (pelaaja.Kuollut)
+        //            break;
+
+        //        if (pelaaja.Väistä() == false)
+        //        {
+        //            pelaaja.MenetäHPtä(luurankolista[i].Hyökkää(pelaaja));
+        //            Console.ReadKey(true);
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine("{0} hyökkäsi, pelaaja väisti.", luurankolista[i].Nimi);
+        //            Console.ReadKey(true);
+        //        }
+        //    }
+        //} 
+        #endregion
     }
 }

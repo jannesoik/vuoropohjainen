@@ -17,15 +17,19 @@ namespace vuoropohjainen2
 
             Hahmo pelaaja = Areena.Areenalista.Find(item => item.Nimi == "Pelaaja");
            
-            Pelaaja.Hahmonluonti(7);
+            Pelaaja.Hahmonluonti(9);
 
             Pelaaja.SaaTavara("Juoma");
 
-            int taisteluita = 3;
-            int luurankoMin = 1, luurankoMax = 2;
+            //Taistelun asetukset
+            int taisteluita = 3, luurankoMin = 1, luurankoMax = 2, vampyyriMin=1, vampyyriMax=2;
             for (int i = 0; i < taisteluita; i++)
             {
-                Areena.LuoLuuranko(Areena.VihollisMääränArvonta(luurankoMin, luurankoMax));
+                Areena.LuoVihollisia(Areena.VihollisMääränArvonta(luurankoMin, luurankoMax), "Luuranko");
+                if(i>0)
+                    Areena.LuoVihollisia(Areena.VihollisMääränArvonta(vampyyriMin, vampyyriMax), "Vampyyri");
+
+
                 if (pelaaja.Kuollut==false)
                 {
                     AloitaTaistelu();
@@ -37,6 +41,7 @@ namespace vuoropohjainen2
                     break;
             }
 
+            //Pelin loppu
             if (pelaaja.Kuollut == false)
             {
                 Console.WriteLine("VOITIT");
@@ -51,14 +56,20 @@ namespace vuoropohjainen2
 
         static public void AloitaTaistelu()
         {
+            #region Taistelun alku
             Console.Clear();
-            Console.WriteLine("Taistelu {0}", Pelaaja.voitetutTaistelut+1);
+            Console.WriteLine("Taistelu {0}", Pelaaja.voitetutTaistelut + 1);
             Console.ReadKey(true);
-            Hahmo pelaaja = Areena.Areenalista.Find(item => item.Nimi == "Pelaaja");
+
+            Hahmo pelaaja = Areena.Areenalista.Find(item => item.Nimi == "Pelaaja"); 
+            #endregion
 
             for (int j = 0; pelaaja.Hp > 0; j++) //taistelu jatkuu, kunnes pelaajan hp loppuu
             {
-                if (Areena.LuurankoLista.Count < 1) //Taistelun voitto
+
+                #region Taistelun voittoehdot
+                bool voittoehdotTäytetty = Vuoro.TaistelunVoittoehdotTäytetty();
+                if (voittoehdotTäytetty) //Taistelun voitto
                 {
                     Console.Clear();
                     Pelaaja.voitetutTaistelut++;
@@ -67,42 +78,77 @@ namespace vuoropohjainen2
                     Console.ResetColor();
                     break;
                 }
+                #endregion
+
+                #region Kierroksen alku
+
+                //kierroksen alussa järjestetään areenalista dex:n mukaan:
+                List<Hahmo> järjestettyLista = Vuoro.SuurinDex(Areena.Areenalista);
+
                 Console.Clear(); Console.ResetColor();
-                Console.Write("KIERROS {0}\n\nAreenalla:", (j + 1));
-                for (int k = 0; k < Areena.Areenalista.Count(); k++) //Käydään areenalista läpi
+                Console.Write("Kierros {0}\n\nVuorojärjestys:", (j + 1));
+                for (int k = 0; k < järjestettyLista.Count(); k++) //Käydään areenalista läpi
                 {
                     if (Areena.Areenalista[k] != null)
                     {
-                        Console.Write("\n" + Areena.Areenalista[k].Nimi + ", HP: ");
+                        int vuoroNro = k + 1;
+                        Console.Write("\n "+vuoroNro+". "  + Areena.Areenalista[k].Nimi + ", HP: ");
                         UI.HpVäri(Areena.Areenalista[k].Hp, Areena.Areenalista[k].MaxHp);
                         if (Areena.Areenalista[k].Puolustautunut)
                             Console.Write(" [puolustautuu]");
                     }
                 }
-                Console.WriteLine("\n");
-
-                //kierroksen alussa valitaan hahmo jolla suurin dex:
-                Hahmo vuorossa = Vuoro.SuurinDex(Areena.Areenalista);
-
                 Console.ReadKey(true);
+                #endregion
 
-                if (vuorossa.Nimi.Contains("Luuranko")) //Luurangot aloittavat
+                
+                
+                for (int i = 0; i < Areena.Areenalista.Count(); i++)
                 {
-                    if (Areena.LuurankoLista.Count > 0)
-                        Vuoro.LuurankojenVuoro(Areena.LuurankoLista, pelaaja);
-                    if (pelaaja.Kuollut == false)
+                    Hahmo vuorossa = järjestettyLista[i];
+
+                    if (vuorossa == pelaaja)
                     {
-                        Vuoro.PelaajanVuoro(pelaaja, Areena.LuurankoLista[0]);
-                        Console.ReadKey(true);
+                        Vuoro.PelaajanVuoro(pelaaja);
+                        Console.ReadKey();
                     }
-                }
-                else // pelaaja aloittaa
-                {
-                    Vuoro.PelaajanVuoro(pelaaja, Areena.LuurankoLista[0]);
-                    Console.ReadKey();
-                    if (Areena.LuurankoLista.Count > 0)//luurankoja vielä elossa                    
-                        Vuoro.LuurankojenVuoro(Areena.LuurankoLista, pelaaja);
-                }
+                    else
+                    {
+                        Vuoro.VihollisenVuoro(vuorossa);
+                    }
+                    #region Vanha systeemi
+                    //if (vuorossa.Nimi.Contains("Luuranko")) //Luurangot aloittavat
+                    //{
+                    //    if (Areena.LuurankoLista.Count > 0)
+                    //        Vuoro.LuurankojenVuoro(Areena.LuurankoLista, pelaaja);
+                    //    if (pelaaja.Kuollut == false)
+                    //    {
+                    //        Vuoro.PelaajanVuoro(pelaaja);
+                    //        Console.ReadKey(true);
+                    //    }
+                    //}
+                    //else if (vuorossa.Nimi.Contains("Vampyyri"))
+                    //{
+                    //    if (Areena.Vampyyrilista.Count > 0)
+                    //        Vuoro.VampyyrienVuoro(Areena.Vampyyrilista, pelaaja);
+                    //    if (pelaaja.Kuollut == false)
+                    //    {
+                    //        Vuoro.PelaajanVuoro(pelaaja);
+                    //        Console.ReadKey(true);
+                    //    }
+                    //}
+                    //else if (vuorossa.Nimi.Contains("Pelaaja")) // pelaaja aloittaa
+                    //{
+                    //    Vuoro.PelaajanVuoro(pelaaja);
+                    //    Console.ReadKey();
+                    //    if (Areena.LuurankoLista.Count > 0 && Areena.Vampyyrilista.Count > 0)//vihollisisa vielä elossa                    
+                    //    {
+                    //        Vuoro.LuurankojenVuoro(Areena.LuurankoLista, pelaaja);
+                    //        Vuoro.LuurankojenVuoro(Areena.Vampyyrilista, pelaaja);
+                    //    }
+                    //} 
+                    #endregion
+                }              
             }
         }
     }

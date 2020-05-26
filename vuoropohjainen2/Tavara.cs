@@ -49,7 +49,7 @@ namespace vuoropohjainen2
                     int torjuttuVahinko = toissijainenKerroin - 1;
                     toissijainenVahinko = 1;
                     toissijaisetViholliset[i].Hp -= toissijainenVahinko;
-                    Console.Write("\nMyös{0} menetti ", toissijaisetViholliset[i].Nimi);
+                    Console.Write("\nMyös {0} menetti ", toissijaisetViholliset[i].Nimi);
                     UI.VahinkoVäri(toissijainenVahinko);
                     Console.Write(" kestopistettä (" + torjuttuVahinko + " vastustettu)\n");
                 }
@@ -79,7 +79,6 @@ namespace vuoropohjainen2
             Console.Write(parannusMäärä); 
             Console.ResetColor();
             Console.Write(" kestopistettä");
-            Console.ReadKey(true);
         }
 
     }
