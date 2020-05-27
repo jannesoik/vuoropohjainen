@@ -166,6 +166,7 @@ namespace vuoropohjainen2
             Puolustautunut = true;
             Tagi = "[puolustautunut]";
         }
+
         public void LaskePuolustus()
         {
             Hahmo pelaaja = Areena.Areenalista.Find(item => item.Nimi == "Pelaaja");

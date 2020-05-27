@@ -147,6 +147,9 @@ namespace vuoropohjainen2
             Console.WriteLine("\nTAVARAT");
             Console.WriteLine("Pommi - Heitä pommi, osuu kaikkiin vihollisiin.");
             Console.WriteLine("Juoma - Palautta DEF:stä riippuvaisen määrän kestopisteitä.");
+            Console.WriteLine("\nVIHOLLISET");
+            Console.WriteLine("Luuranko - Nopea: vaikea osua, vuorojärjestyksen kärjessä. Heikko Pommille, tiputtaa kuollessaan Pommin.");
+            Console.WriteLine("Vampyyri - Kestävä, parantaa itseään osuessaan pelaajaan. Tiputtaa Juoman.");
             Console.WriteLine("\n\n...");
             Console.ReadKey(true);
             Päävalikko();

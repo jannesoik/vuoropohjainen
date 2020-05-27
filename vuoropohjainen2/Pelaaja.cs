@@ -154,7 +154,7 @@ namespace vuoropohjainen2
             System.Threading.Thread.Sleep(400);
         }
 
-        static public async void Hahmonluonti(int taitopisteet)
+        static public void Hahmonluonti(int taitopisteet)
         {
             do
             {

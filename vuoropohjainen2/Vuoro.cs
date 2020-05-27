@@ -12,12 +12,7 @@ namespace vuoropohjainen2
         {
             //järjestä lista dex:n mukaan
             int pelaajanDex = areenalista[0].Dex;
-            List<Hahmo> järjestettyLista = areenalista.OrderByDescending(o => o.Dex).ToList();
-            for (int i = 0; i < järjestettyLista.Count; i++)
-            {
-                if (järjestettyLista[i] != null)
-                    Console.WriteLine((i + 1) + ". vuorossa " + järjestettyLista[i].Nimi + ", Dex: " + järjestettyLista[i].Dex);
-            }
+            List<Hahmo> järjestettyLista = areenalista.OrderByDescending(o => o.Dex).ToList();            
             return järjestettyLista;
         }
 
@@ -44,7 +39,8 @@ namespace vuoropohjainen2
                         else
                         {
                             Console.WriteLine("{0} hyökkäsi, pelaaja väisti.", vihollinen.Nimi);
-                            System.Threading.Thread.Sleep(1500);
+                            Console.WriteLine("\n\n...");
+                            Console.ReadKey(true);
                         }
                     }
                 }
@@ -104,7 +100,8 @@ namespace vuoropohjainen2
                     else
                     {
                         Console.WriteLine("{0} hyökkäsi, {1} väisti.", pelaaja.Nimi, vihollinen.Nimi);
-                        System.Threading.Thread.Sleep(1500);
+                        Console.WriteLine("\n\n...");
+                        Console.ReadKey(true);
                     }
                 }
                 //Puolustus
