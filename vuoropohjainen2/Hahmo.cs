@@ -56,7 +56,7 @@ namespace vuoropohjainen2
                 {
                     Pelaaja.SaaKokemusta(10);
                     Random arvonta = new Random();
-                    if (arvonta.Next(1, 101) > 5)
+                    if (arvonta.Next(1, 101) > 1)
                         Pelaaja.SaaTavara("Pommi");
                     else if (arvonta.Next(1, 101) > 15)
                         Pelaaja.SaaTavara("Juoma");
@@ -143,8 +143,8 @@ namespace vuoropohjainen2
         public bool Väistä()
         {
             Random arvonta = new Random();
-            int arpaNro = arvonta.Next(1, 100);
-            int väistöprosentti = Dex * 5;
+            int arpaNro = arvonta.Next(1, 101);
+            int väistöprosentti = Dex * 7;
             //Console.WriteLine(Nimi+"n väistömahdollisuus: " + väistöprosentti+"%");
             if (arpaNro <= 5 * Dex)
                 return true;

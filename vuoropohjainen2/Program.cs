@@ -20,6 +20,8 @@ namespace vuoropohjainen2
             Pelaaja.Hahmonluonti(9);
 
             Pelaaja.SaaTavara("Juoma");
+            Pelaaja.SaaTavara("Pommi");
+
 
             //Taistelun asetukset
             int taisteluita = 3, luurankoMin = 1, luurankoMax = 2, vampyyriMin=1, vampyyriMax=2;
@@ -91,12 +93,12 @@ namespace vuoropohjainen2
                 Console.Write("Kierros {0}\n\nVuorojärjestys:", (j + 1));
                 for (int k = 0; k < järjestettyLista.Count(); k++) //Käydään areenalista läpi
                 {
-                    if (Areena.Areenalista[k] != null)
+                    if (järjestettyLista[k] != null)
                     {
                         int vuoroNro = k + 1;
-                        Console.Write("\n "+vuoroNro+". "  + Areena.Areenalista[k].Nimi + ", HP: ");
-                        UI.HpVäri(Areena.Areenalista[k].Hp, Areena.Areenalista[k].MaxHp);
-                        if (Areena.Areenalista[k].Puolustautunut)
+                        Console.Write("\n "+vuoroNro+". "  + järjestettyLista[k].Nimi + ", HP: ");
+                        UI.HpVäri(järjestettyLista[k].Hp, järjestettyLista[k].MaxHp);
+                        if (järjestettyLista[k].Puolustautunut)
                             Console.Write(" [puolustautuu]");
                     }
                 }

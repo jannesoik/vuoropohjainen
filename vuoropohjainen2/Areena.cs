@@ -24,14 +24,14 @@ namespace vuoropohjainen2
                 if (arvonta.Next(1, 10) > 5)
                 {
                     if(vihollistyyppi=="Luuranko")
-                        Areenalista.Add(new Hahmo("Vahva Luuranko " + listaNro, 15, 4, 4, 4, 15));
+                        Areenalista.Add(new Hahmo("Vahva Luuranko " + listaNro, 15, 4, 3, 4, 15));
                     if(vihollistyyppi=="Vampyyri")
                         Areenalista.Add(new Hahmo("Vahva Vampyyri " + listaNro, 40, 3, 2, 6, 40));
                 }
                 else
                 {
                     if (vihollistyyppi == "Luuranko")
-                        Areenalista.Add(new Hahmo("Heikko Luuranko " + listaNro, 10, 2, 4, 2, 10));
+                        Areenalista.Add(new Hahmo("Heikko Luuranko " + listaNro, 10, 2, 5, 2, 10));
                     if (vihollistyyppi == "Vampyyri")
                         Areenalista.Add(new Hahmo("Heikko Vampyyri " + listaNro, 25, 3, 2, 3, 25));
                 }

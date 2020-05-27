@@ -30,13 +30,14 @@ namespace vuoropohjainen2
                 Console.WriteLine("Löysit {0}n.", tavara);
                 if (tavara == "Pommi")
                     Tavaralista.Add(new Tavara("Pommi"));
-                else if (tavara == "Juoma")
+                if (tavara == "Juoma")
                     Tavaralista.Add(new Tavara("Juoma"));
+                Console.ResetColor();
             }
             else
             {
-                Console.Clear();
-                Console.WriteLine("Et löytänyt mitään ({0} vs. {1})", pelaaja.Dex, arpaNro);
+                //Console.Clear();
+                //Console.WriteLine("Et löytänyt mitään ({0} vs. {1})", pelaaja.Dex, arpaNro);
             }
 
             System.Threading.Thread.Sleep(600);

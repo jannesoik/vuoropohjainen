@@ -123,7 +123,7 @@ namespace vuoropohjainen2
                             Tavara.JuoJuoma(pelaaja);
                             Pelaaja.Tavaralista.Remove(valittuTavara);
                         }
-                        else if (valittuTavara.Nimi == "Pommi")
+                        if (valittuTavara.Nimi == "Pommi")
                         {
                             vihollinen = UI.ValitseVihollinen();
                             Tavara.HeitäPommi(pelaaja, vihollinen, UI.ValitseToissijaisetViholliset(vihollinen));

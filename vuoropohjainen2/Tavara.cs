@@ -64,6 +64,8 @@ namespace vuoropohjainen2
             }
 
             vihollinen.MenetäHPtä(vahinko);
+            Console.ReadKey(true);
+            Console.WriteLine("\n\n...");
         }
 
         public static void JuoJuoma(Hahmo juoja)
