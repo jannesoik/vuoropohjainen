@@ -62,6 +62,7 @@ namespace vuoropohjainen2
                 System.Threading.Thread.Sleep(900);
                 Console.ResetColor();
                 pelaaja.MaxHp += 5;
+                pelaaja.Hp += 5;
                 Taidonnosto();
             }
             else if (Exp >= 15 && Taso < 3)
@@ -72,6 +73,7 @@ namespace vuoropohjainen2
                 System.Threading.Thread.Sleep(900);
                 Console.ResetColor();
                 pelaaja.MaxHp += 5;
+                pelaaja.Hp += 5;
                 Taidonnosto();
             }
             else if (Exp >= 30 && Taso < 4)
@@ -82,6 +84,7 @@ namespace vuoropohjainen2
                 System.Threading.Thread.Sleep(900);
                 Console.ResetColor();
                 pelaaja.MaxHp += 5;
+                pelaaja.Hp += 5;
                 Taidonnosto();
             }
             else if (Exp >= 50 && Taso < 5)
@@ -92,6 +95,18 @@ namespace vuoropohjainen2
                 System.Threading.Thread.Sleep(900);
                 Console.ResetColor();
                 pelaaja.MaxHp += 5;
+                pelaaja.Hp += 5;
+                Taidonnosto();
+            }
+            else if (Exp >= 75 && Taso < 5)
+            {
+                Console.Clear();
+                Console.Write("Nousit tasolle 5.");
+                Taso++;
+                System.Threading.Thread.Sleep(900);
+                Console.ResetColor();
+                pelaaja.MaxHp += 5;
+                pelaaja.Hp += 5;
                 Taidonnosto();
             }
             Console.ResetColor();

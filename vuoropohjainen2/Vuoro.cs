@@ -39,8 +39,7 @@ namespace vuoropohjainen2
                         else
                         {
                             Console.WriteLine("{0} hyökkäsi, pelaaja väisti.", vihollinen.Nimi);
-                            Console.WriteLine("\n\n...");
-                            Console.ReadKey(true);
+                            System.Threading.Thread.Sleep(900);
                         }
                     }
                 }
@@ -89,7 +88,6 @@ namespace vuoropohjainen2
                             pelaaja.ExtraVuoro = true;
                             System.Threading.Thread.Sleep(600);
                         }
-                        
                     }
 
                 } while (nappiInfo.Key != ConsoleKey.D1);
@@ -108,8 +106,7 @@ namespace vuoropohjainen2
                     else
                     {
                         Console.WriteLine("{0} hyökkäsi, {1} väisti.", pelaaja.Nimi, vihollinen.Nimi);
-                        Console.WriteLine("\n\n...");
-                        Console.ReadKey(true);
+                        System.Threading.Thread.Sleep(900);
                     }
                 }
                 //Puolustus

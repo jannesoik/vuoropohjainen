@@ -19,10 +19,10 @@ namespace vuoropohjainen2
         {
             Random arvonta = new Random();
 
-            int vahinkoKerroin = arvonta.Next(2, 4);
-            int toissijainenKerroin = arvonta.Next(3, 7);
+            int vahinkoKerroin = arvonta.Next(4, 9);
+            int toissijainenKerroin = arvonta.Next(2, 5)+heittäjä.Dex;
 
-            int vahinko = (4 * vahinkoKerroin) - vihollinen.Def;
+            int vahinko = (vahinkoKerroin + heittäjä.Dex) - vihollinen.Def;
 
             if (vahinko < 1)
             {
@@ -62,9 +62,9 @@ namespace vuoropohjainen2
                 }
                 
             }
-
+            Areena.PoistaKuolleet();
             vihollinen.MenetäHPtä(vahinko);
-            System.Threading.Thread.Sleep(800);
+            System.Threading.Thread.Sleep(2500);
         }
 
         public static void JuoJuoma(Hahmo juoja)

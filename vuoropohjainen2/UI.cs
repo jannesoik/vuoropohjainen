@@ -11,7 +11,7 @@ namespace vuoropohjainen2
     {
         static public void VahinkoVäri(int vahinko)
         {
-            if (vahinko >= 10)
+            if (vahinko > 11)
             {
                 Console.BackgroundColor = ConsoleColor.Black;
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -138,17 +138,17 @@ namespace vuoropohjainen2
         {
             Console.WriteLine("\nTAIDOT");
             Console.WriteLine("STR - Hyökkäysvahinko");
-            Console.WriteLine("DEX - Vuorojärjestys, väistömahdollisuus, tavaroiden löytömahdollisuus");
+            Console.WriteLine("DEX - Vuorojärjestys, väistömahdollisuus, tavaroiden löytömahdollisuus, kriittinen osuma");
             Console.WriteLine("DEF - Vahingonvastustus, kestopisteet");
             Console.WriteLine("\nKOMENNOT");
             Console.WriteLine("Hyökkää - STR-riippuvainen hyökkäys.");
-            Console.WriteLine("Puolusta - DEF&DEX-riippuvainen puolustus, mahdollisuus extravuoroon. ");
+            Console.WriteLine("Puolusta - DEF-riippuvainen puolustus, mahdollisuus extravuoroon. ");
             Console.WriteLine("Tavara - Käytä löytämääsi tavaraa.");
             Console.WriteLine("\nTAVARAT");
-            Console.WriteLine("Pommi - Heitä pommi, osuu kaikkiin vihollisiin.");
+            Console.WriteLine("Pommi - Heitä pommi, osuu kaikkiin vihollisiin. Vahinko riippuu DEX:stä");
             Console.WriteLine("Juoma - Palautta DEF:stä riippuvaisen määrän kestopisteitä.");
             Console.WriteLine("\nVIHOLLISET");
-            Console.WriteLine("Luuranko - Nopea: vaikea osua, vuorojärjestyksen kärjessä. Heikko Pommille, tiputtaa kuollessaan Pommin.");
+            Console.WriteLine("Luuranko - Nopea: vaikea osua, vuorojärjestyksen kärjessä. Tiputtaa Pommin.");
             Console.WriteLine("Vampyyri - Kestävä, parantaa itseään osuessaan pelaajaan. Tiputtaa Juoman.");
             Console.WriteLine("\n\n...");
             Console.ReadKey(true);

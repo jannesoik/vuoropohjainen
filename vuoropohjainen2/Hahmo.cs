@@ -104,8 +104,19 @@ namespace vuoropohjainen2
         public int Hyökkää(Hahmo puolustaja, Hahmo hyökkääjä)
         {
             Random arvonta = new Random();
-            int vahinkoKerroin = arvonta.Next(1, 3);
+            int vahinkoKerroin = arvonta.Next(1, 4);
+            int kriittinenArvonta = arvonta.Next(1, 101);
             int vahinko = (Str * vahinkoKerroin) - puolustaja.Def;
+
+            if (hyökkääjä.Dex >= kriittinenArvonta)//kriittinen osuma
+            {
+                vahinko = vahinko * 2;
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("Kriittinen osuma");
+                Console.ResetColor();
+            }
+
             if (vahinko < 1)
             {
                 int torjuttuVahinko = (Str * vahinkoKerroin) - 1;
@@ -159,7 +170,7 @@ namespace vuoropohjainen2
 
             ExtraVuoronArvonta();
 
-            int arpaNro = arvonta.Next(1, 3);
+            int arpaNro = arvonta.Next(1, 4);
             puolustusDef = arpaNro + Def;
             Def = Def + puolustusDef;
             Dex = Dex + 1;
@@ -182,10 +193,10 @@ namespace vuoropohjainen2
             Random arvonta = new Random();
 
             int extraArpa = arvonta.Next(1, 101);
-            if (extraArpa < Def * (Dex*3))
+            if (extraArpa < Def *5)
             {
                 Console.Clear();
-                Console.WriteLine("Sait extravuoron! ({0} vs {1})", Def * (Dex*3), extraArpa);
+                Console.WriteLine("Sait extravuoron! ({0} vs {1})", Def*9, extraArpa);
                 System.Threading.Thread.Sleep(700);
                 ExtraVuoro = true;
             }
