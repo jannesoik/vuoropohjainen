@@ -24,7 +24,7 @@ namespace vuoropohjainen2
 
 
             //Taistelun asetukset
-            int taisteluita = 3, luurankoMin = 1, luurankoMax = 2, vampyyriMin=1, vampyyriMax=2;
+            int taisteluita = 3, luurankoMin = 1, luurankoMax = 1, vampyyriMin=1, vampyyriMax=1;
             for (int i = 0; i < taisteluita; i++)
             {
                 Areena.LuoVihollisia(Areena.VihollisMääränArvonta(luurankoMin, luurankoMax), "Luuranko");
@@ -46,14 +46,14 @@ namespace vuoropohjainen2
             //Pelin loppu
             if (pelaaja.Kuollut == false)
             {
+                Console.Clear();
                 Console.WriteLine("VOITIT");
-                Console.WriteLine("\n\n...");
                 Console.ReadKey(true);
             }
             else
             {
+                Console.Clear();
                 Console.WriteLine("Hävisit.");
-                Console.WriteLine("\n\n...");
                 Console.ReadKey(true);
             }
         }

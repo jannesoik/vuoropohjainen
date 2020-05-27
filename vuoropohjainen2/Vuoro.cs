@@ -80,8 +80,16 @@ namespace vuoropohjainen2
                         Console.WriteLine("\nEXTRAVUORO\nValitse komento: \n1) Hyökkää \n2) Tavara");
                         nappiInfo = Console.ReadKey(true);
                         pelaaja.ExtraVuoro = false;
-                        if (nappiInfo.Key == ConsoleKey.D2)
+                        if (nappiInfo.Key == ConsoleKey.D2 && Pelaaja.Tavaralista.Count() > 0)
                             break;
+                        else if(nappiInfo.Key == ConsoleKey.D2 && Pelaaja.Tavaralista.Count() < 1)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Ei tavaroita");
+                            pelaaja.ExtraVuoro = true;
+                            System.Threading.Thread.Sleep(600);
+                        }
+                        
                     }
 
                 } while (nappiInfo.Key != ConsoleKey.D1);

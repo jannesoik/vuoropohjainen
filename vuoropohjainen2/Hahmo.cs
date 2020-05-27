@@ -54,20 +54,20 @@ namespace vuoropohjainen2
 
                 if (Nimi.Contains("Vahva Luuranko"))
                 {
-                    Pelaaja.SaaKokemusta(10);
+                    Pelaaja.SaaKokemusta(12);
                     Random arvonta = new Random();
                     if (arvonta.Next(1, 101) > 1)
                         Pelaaja.SaaTavara("Pommi");
-                    else if (arvonta.Next(1, 101) > 15)
+                    if (arvonta.Next(1, 101) > 15)
                         Pelaaja.SaaTavara("Juoma");
                 }
                 else if (Nimi.Contains("Heikko Luuranko"))
                 {
-                    Pelaaja.SaaKokemusta(5);
+                    Pelaaja.SaaKokemusta(8);
                     Random arvonta = new Random();
                     if (arvonta.Next(1, 101) > 25)
                         Pelaaja.SaaTavara("Pommi");
-                    else if (arvonta.Next(1, 101) > 50)
+                    if (arvonta.Next(1, 101) > 50)
                         Pelaaja.SaaTavara("Juoma");
                 }
                 else if (Nimi.Contains("Heikko Vampyyri"))
@@ -76,16 +76,16 @@ namespace vuoropohjainen2
                     Random arvonta = new Random();
                     if (arvonta.Next(1, 101) > 50)
                         Pelaaja.SaaTavara("Pommi");
-                    else if (arvonta.Next(1, 101) > 10)
+                    if (arvonta.Next(1, 101) > 25)
                         Pelaaja.SaaTavara("Juoma");
                 }
                 else if (Nimi.Contains("Vahva Vampyyri"))
                 {
                     Pelaaja.SaaKokemusta(20);
                     Random arvonta = new Random();
-                    if (arvonta.Next(1, 101) > 30)
+                    if (arvonta.Next(1, 101) > 50)
                         Pelaaja.SaaTavara("Pommi");
-                    else if (arvonta.Next(1, 101) > 5)
+                    if (arvonta.Next(1, 101) > 15)
                         Pelaaja.SaaTavara("Juoma");
                 }
 
@@ -182,10 +182,10 @@ namespace vuoropohjainen2
             Random arvonta = new Random();
 
             int extraArpa = arvonta.Next(1, 101);
-            if (extraArpa < Def * (Dex*2))
+            if (extraArpa < Def * (Dex*3))
             {
                 Console.Clear();
-                Console.WriteLine("Sait extravuoron! ({0} vs {1})", Def * Dex, extraArpa);
+                Console.WriteLine("Sait extravuoron! ({0} vs {1})", Def * (Dex*3), extraArpa);
                 System.Threading.Thread.Sleep(700);
                 ExtraVuoro = true;
             }

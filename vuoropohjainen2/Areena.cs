@@ -24,7 +24,7 @@ namespace vuoropohjainen2
                 if (arvonta.Next(1, 10) > 5)
                 {
                     if(vihollistyyppi=="Luuranko")
-                        Areenalista.Add(new Hahmo("Vahva Luuranko " + listaNro, 15, 4, 3, 4, 15));
+                        Areenalista.Add(new Hahmo("Vahva Luuranko " + listaNro, 15, 4, 3, 3, 15));
                     if(vihollistyyppi=="Vampyyri")
                         Areenalista.Add(new Hahmo("Vahva Vampyyri " + listaNro, 40, 3, 2, 6, 40));
                 }
@@ -33,7 +33,7 @@ namespace vuoropohjainen2
                     if (vihollistyyppi == "Luuranko")
                         Areenalista.Add(new Hahmo("Heikko Luuranko " + listaNro, 10, 2, 5, 2, 10));
                     if (vihollistyyppi == "Vampyyri")
-                        Areenalista.Add(new Hahmo("Heikko Vampyyri " + listaNro, 25, 3, 2, 3, 25));
+                        Areenalista.Add(new Hahmo("Heikko Vampyyri " + listaNro, 25, 3, 1, 3, 25));
                 }
                 await Task.Delay(100); //odotetaan jotta saadaan uusi randomnro
             }
