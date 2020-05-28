@@ -110,7 +110,7 @@ namespace vuoropohjainen2
 
             if (hyökkääjä.Dex >= kriittinenArvonta)//kriittinen osuma
             {
-                vahinko = vahinko * 2;
+                vahinko = (vahinko+1) * 2;
                 Console.BackgroundColor = ConsoleColor.Black;
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("Kriittinen osuma");

@@ -52,6 +52,7 @@ namespace vuoropohjainen2
                     Console.Write("\nMyös {0} menetti ", toissijaisetViholliset[i].Nimi);
                     UI.VahinkoVäri(toissijainenVahinko);
                     Console.Write(" kestopistettä (" + torjuttuVahinko + " vastustettu)\n");
+                    Areena.PoistaKuolleet();
                 }
                 else
                 {
@@ -59,8 +60,9 @@ namespace vuoropohjainen2
                     Console.Write("\nMyös {0} menetti ", toissijaisetViholliset[i].Nimi);
                     UI.VahinkoVäri(toissijainenVahinko);
                     Console.Write(" kestopistettä (" + toissijaisetViholliset[i].Def + " vastustettu)\n");
+                    Areena.PoistaKuolleet();
                 }
-                
+
             }
             Areena.PoistaKuolleet();
             vihollinen.MenetäHPtä(vahinko);
